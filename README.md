@@ -11,6 +11,35 @@
 
 ---
 
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><b>Dashboard Overview</b></td>
+    <td align="center"><b>Knowledge Base Manager</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/01_dashboard_overview.png" alt="Dashboard Overview" width="100%"/></td>
+    <td><img src="screenshots/02_knowledge_base.png" alt="Knowledge Base" width="100%"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Embeddable Chat Widget</b></td>
+    <td align="center"><b>Persona & Settings</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/03_chat_widget.png" alt="Chat Widget" width="100%"/></td>
+    <td><img src="screenshots/04_settings_persona.png" alt="Settings" width="100%"/></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><b>Super Admin — Tenant Management</b></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="screenshots/05_super_admin.png" alt="Super Admin" width="100%"/></td>
+  </tr>
+</table>
+
+---
+
 ## ✨ Features
 
 | Feature | Description |
