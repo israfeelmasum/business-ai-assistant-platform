@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fellowly AI | Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: '#2563EB', secondary: '#1E293B', accent: '#0EA5E9' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F8FAFC; }
+        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); }
+        
+        /* Fellowly Website Original Gradient Matching */
+        .fellowly-sidebar { 
+            background: linear-gradient(135deg, #c026d3 0%, #e11d48 40%, #ea580c 100%);
+            color: white;
+        }
+        
+        .sidebar-active { background: rgba(255, 255, 255, 0.2); border-left: 4px solid #fff; font-weight: 600; }
+        .sidebar-btn { color: rgba(255, 255, 255, 0.7); transition: all 0.3s ease; }
+        .sidebar-btn:hover { background: rgba(255, 255, 255, 0.1); color: white; }
+        
+        .code-block { background: #0F172A; color: #38BDF8; font-family: 'Courier New', Courier, monospace; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Ｌ Ａ Ｉ Ｓ Ａ Aesthetic Text */
+        .laisa-text { font-family: "MS PGothic", "Courier New", monospace; text-shadow: 0 0 15px rgba(255,255,255,0.6); letter-spacing: 4px; font-weight: bold;}
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-gray-800">
+
+    <aside class="w-72 fellowly-sidebar flex flex-col shadow-2xl z-10">
+        <div class="h-24 flex items-center justify-center border-b border-white/20 px-4">
+            <div class="w-full max-w-[200px]">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 89.8 26" style="enable-background:new 0 0 89.8 26;" xml:space="preserve">
+                    <style type="text/css">
+                        .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#0C1B1B;}
+                        .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#0C1B1C;}
+                        .st2{fill-rule:evenodd;clip-rule:evenodd;fill:#0C1C1C;}
+                        .st3{fill:#EE463B;}
+                        .st4{fill-rule:evenodd;clip-rule:evenodd;fill:#0DA0B8;}
+                        .st5{fill-rule:evenodd;clip-rule:evenodd;fill:#2FB14B;}
+                        .st6{fill-rule:evenodd;clip-rule:evenodd;fill:#4B3493;}
+                        .st7{fill-rule:evenodd;clip-rule:evenodd;fill:#F79D1D;}
+                        .st8{fill-rule:evenodd;clip-rule:evenodd;fill:#EE443A;}
+                        .st9{fill-rule:evenodd;clip-rule:evenodd;fill:#EE4439;}
+                        .st10{fill-rule:evenodd;clip-rule:evenodd;fill:#F4847C;}
+                        .st11{fill-rule:evenodd;clip-rule:evenodd;fill:#2EB14B;}
+                        .st12{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+                        .st13{fill:#EE4439;}
+                        .st14{fill:#FFFFFF;}
+                    </style>
+                    <g>
+                        <g><path class="st12" d="M55.3,5.5c0,4.9,0,9.8,0,14.7c-1.1,0-2.2,0-3.4,0c0-4.9,0-9.8,0-14.7C53,5.5,54.1,5.5,55.3,5.5z"/></g>
+                        <g><path class="st12" d="M57.8,5.5c0.7,0,1.4,0,2.1,0c0,4.9,0,9.8,0,14.7c-0.7,0-1.4,0-2.1,0C57.8,15.3,57.8,10.4,57.8,5.5z"/></g>
+                        <g><path class="st12" d="M32.6,12.2c2,0,4,0,6,0c0,1,0,2,0,3c-2,0-4,0-6,0c0,1.7,0,3.3,0,5c-1.2,0-2.3,0-3.5,0c0-4.7,0-9.4,0-14.1 c3.5,0,7,0,10.5,0c0,1,0,2.1,0,3.1c-2.3,0-4.7,0-7,0C32.6,10.2,32.6,11.2,32.6,12.2z"/></g>
+                        <g><path class="st12" d="M86.4,10.5c0.8,0,1.6,0,2.3,0.1c-1.2,3.2-2.3,6.5-3.5,9.7c-0.6,0-1.3,0-1.9,0c-0.8-2.2-1.5-4.5-2.3-6.7 c-0.8,2.2-1.5,4.5-2.3,6.7c-0.6,0-1.3,0-1.9,0c-1.2-3.2-2.3-6.5-3.5-9.7c0.8,0,1.6,0,2.3,0c0.7,2.2,1.4,4.3,2.1,6.4 c0.8-2.1,1.5-4.3,2.3-6.4c0.6,0,1.3,0,1.9,0c0.8,2.1,1.5,4.3,2.3,6.4C85,14.8,85.7,12.6,86.4,10.5z"/></g>
+                        <path class="st12" d="M70.5,11.1c-1.2-0.7-2.4-1-3.8-0.9c-1.1,0.1-2,0.5-2.8,1.2c-1.3,1.3-1.9,2.9-1.6,4.7c0.3,1.9,1.3,3.1,3,3.9 c1.7,0.6,3.4,0.5,5-0.4c1.6-1,2.3-2.5,2.3-4.4C72.6,13.6,71.9,12.2,70.5,11.1z M69.6,17.5c-0.8,0.8-1.8,1.1-2.9,0.9 c-1.3-0.4-2.1-1.2-2.3-2.6c-0.2-1.3,0.2-2.4,1.3-3.2c0.4-0.3,0.9-0.4,1.3-0.5c1.8-0.1,2.9,0.7,3.3,2.4 C70.6,15.7,70.3,16.7,69.6,17.5z"/>
+                        <path class="st12" d="M48.8,11.3c-1.1-0.9-2.4-1.4-3.8-1.4c-1.5,0-2.9,0.5-3.9,1.6c-1,1.2-1.5,2.6-1.3,4.2c0.2,1.8,1,3.2,2.5,4.1 c1.7,0.9,3.5,1,5.3,0.3c1.2-0.5,2.1-1.4,2.5-2.7c-1.1,0-2.3,0-3.4,0c-0.1,0.1-0.2,0.2-0.4,0.3c-0.3,0.1-0.7,0.2-1.1,0.2 c-1.2,0-1.9-0.6-2.2-1.7c0,0,0-0.1,0-0.1c2.4,0,4.8,0,7.3,0c0-0.2,0-0.3,0.1-0.5C50.4,13.9,49.9,12.5,48.8,11.3z M42.9,14 C42.9,14,42.9,14,42.9,14c0.3-1.1,1-1.6,2.1-1.7c0.9-0.1,1.6,0.3,2,1.2c0,0.2,0.1,0.3,0.1,0.5C45.7,14.1,44.3,14.1,42.9,14z"/>
+                    </g>
+                    <g>
+                        <path class="st14" d="M63.2,8.3c0-0.1,0-0.2,0.1-0.2C63.4,8,63.4,8,63.5,8c0.1,0,0.2,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2 c0,0.1,0,0.2-0.1,0.2c-0.1,0.1-0.1,0.1-0.2,0.1c-0.1,0-0.2,0-0.2-0.1C63.2,8.4,63.2,8.4,63.2,8.3z"/>
+                        <path class="st14" d="M65.3,6h-0.9V5.5h2.4V6h-0.9v2.5h-0.5V6z"/>
+                        <path class="st14" d="M68,8.1c0.2,0,0.4-0.1,0.5-0.2H69c-0.1,0.2-0.2,0.4-0.4,0.5c-0.2,0.1-0.4,0.2-0.7,0.2c-0.2,0-0.3,0-0.5-0.1 c-0.1-0.1-0.3-0.1-0.4-0.2C67,8.2,67,8.1,66.9,7.9c-0.1-0.1-0.1-0.3-0.1-0.5c0-0.2,0-0.3,0.1-0.5C67,6.9,67,6.8,67.1,6.7 c0.1-0.1,0.2-0.2,0.4-0.2c0.1-0.1,0.3-0.1,0.5-0.1c0.2,0,0.3,0,0.5,0.1c0.1,0.1,0.3,0.1,0.4,0.2C68.9,6.8,68.9,6.9,69,7 c0.1,0.1,0.1,0.3,0.1,0.5c0,0,0,0.1,0,0.1c0,0,0,0.1,0,0.1h-1.7c0,0.2,0.1,0.3,0.2,0.3C67.7,8.1,67.8,8.1,68,8.1z M68.5,7.2 c0-0.1-0.1-0.2-0.2-0.2c-0.1-0.1-0.2-0.1-0.3-0.1c-0.1,0-0.2,0-0.3,0.1c-0.1,0.1-0.2,0.1-0.2,0.2H68.5z"/>
+                        <path class="st14" d="M70.1,7.5c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,0.3,0.2,0.4,0.2c0.1,0,0.2,0,0.3-0.1c0.1-0.1,0.2-0.1,0.2-0.3h0.5 c-0.1,0.3-0.2,0.5-0.4,0.6c-0.2,0.1-0.4,0.2-0.7,0.2c-0.2,0-0.3,0-0.5-0.1c-0.1-0.1-0.3-0.1-0.4-0.2c-0.1-0.1-0.2-0.2-0.2-0.4 c-0.1-0.1-0.1-0.3-0.1-0.5c0-0.2,0-0.3,0.1-0.5c0.1-0.1,0.1-0.3,0.2-0.4c0.1-0.1,0.2-0.2,0.4-0.2c0.1-0.1,0.3-0.1,0.5-0.1 c0.3,0,0.5,0.1,0.7,0.2c0.2,0.1,0.3,0.3,0.4,0.6h-0.5c0-0.1-0.1-0.2-0.2-0.2c-0.1-0.1-0.2-0.1-0.3-0.1c-0.2,0-0.3,0.1-0.4,0.2 C70.2,7.1,70.1,7.3,70.1,7.5z"/>
+                        <path class="st14" d="M72.8,8.6h-0.5v-3h0.5V8.6z M73.4,6.3c0.2,0,0.3,0,0.4,0.1c0.1,0.1,0.2,0.1,0.3,0.2c0.1,0.1,0.1,0.2,0.2,0.3 c0,0.1,0.1,0.2,0.1,0.3v1.3h-0.5V7.3c0-0.1,0-0.1,0-0.2c0-0.1-0.1-0.1-0.1-0.1c0,0-0.1-0.1-0.2-0.1c-0.1,0-0.1,0-0.2,0 c-0.1,0-0.1,0-0.2,0c-0.1,0-0.1,0-0.2,0.1c0,0-0.1,0.1-0.1,0.1c0,0.1,0,0.1,0,0.2v1.3h-0.5l0.2-1.2c0-0.1,0-0.2,0.1-0.3 c0-0.1,0.1-0.2,0.1-0.3c0.1-0.1,0.2-0.2,0.3-0.3C73.1,6.4,73.2,6.3,73.4,6.3z"/>
+                        <path class="st14" d="M75.9,6.3c0.2,0,0.3,0,0.5,0.1c0.1,0.1,0.2,0.1,0.3,0.2c0.1,0.1,0.1,0.2,0.2,0.3c0,0.1,0.1,0.2,0.1,0.3v1.3 h-0.5V7.3c0-0.1,0-0.1,0-0.2c0-0.1-0.1-0.1-0.1-0.1c0,0-0.1-0.1-0.2-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.1,0-0.2,0 c-0.1,0-0.1,0-0.2,0.1c0,0-0.1,0.1-0.1,0.1c0,0.1,0,0.1,0,0.2v1.3h-0.5V7.3c0-0.1,0-0.2,0.1-0.3c0-0.1,0.1-0.2,0.2-0.3 c0.1-0.1,0.2-0.2,0.3-0.2C75.6,6.4,75.7,6.3,75.9,6.3z"/>
+                        <path class="st14" d="M77.5,7.5c0-0.2,0-0.3,0.1-0.5c0.1-0.1,0.1-0.3,0.2-0.4c0.1-0.1,0.2-0.2,0.4-0.2c0.1-0.1,0.3-0.1,0.5-0.1 c0.2,0,0.3,0,0.5,0.1c0.1,0.1,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.2,0.2,0.4c0.1,0.1,0.1,0.3,0.1,0.5c0,0.2,0,0.3-0.1,0.5 c-0.1,0.1-0.1,0.3-0.2,0.4c-0.1,0.1-0.2,0.2-0.4,0.2c-0.1,0.1-0.3,0.1-0.5,0.1c-0.2,0-0.3,0-0.5-0.1c-0.1-0.1-0.3-0.1-0.4-0.2 c-0.1-0.1-0.2-0.2-0.2-0.4C77.5,7.8,77.5,7.6,77.5,7.5z M78,7.5c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,0.3,0.2,0.4,0.2 c0.2,0,0.3-0.1,0.4-0.2c0.1-0.1,0.2-0.3,0.2-0.5c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.3-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.4,0.2 C78,7.1,78,7.3,78,7.5z"/>
+                        <path class="st14" d="M80.2,5.5h0.5v3h-0.5V5.5z"/>
+                        <path class="st14" d="M81.3,7.5c0-0.2,0-0.3,0.1-0.5c0.1-0.1,0.1-0.3,0.2-0.4c0.1-0.1,0.2-0.2,0.4-0.2c0.1-0.1,0.3-0.1,0.5-0.1 c0.2,0,0.3,0,0.5,0.1c0.1,0.1,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.2,0.2,0.4c0.1,0.1,0.1,0.3,0.1,0.5c0,0.2,0,0.3-0.1,0.5 c-0.1,0.1-0.1,0.3-0.2,0.4c-0.1,0.1-0.2,0.2-0.4,0.2c-0.1,0.1-0.3,0.1-0.5,0.1c-0.2,0-0.3,0-0.5-0.1s-0.3-0.1-0.4-0.2 c-0.1-0.1-0.2-0.2-0.2-0.4C81.3,7.8,81.3,7.6,81.3,7.5z M81.8,7.5c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,0.3,0.2,0.4,0.2 c0.2,0,0.3-0.1,0.4-0.2C83,7.8,83,7.7,83,7.5C83,7.3,83,7.1,82.9,7c-0.1-0.1-0.3-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.4,0.2 C81.9,7.1,81.8,7.3,81.8,7.5z"/>
+                        <path class="st14" d="M86.3,8.5c0,0.1,0,0.3-0.1,0.4C86.2,9,86.1,9.1,86,9.2c-0.1,0.1-0.2,0.2-0.3,0.2c-0.1,0-0.3,0.1-0.4,0.1 c-0.2,0-0.4,0-0.6-0.1c-0.2-0.1-0.3-0.2-0.4-0.3l0.4-0.3c0.1,0.1,0.1,0.1,0.2,0.2C84.9,8.9,85.1,9,85.2,9c0.2,0,0.3,0,0.4-0.1 c0.1-0.1,0.1-0.2,0.1-0.4V8.3c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0-0.2,0.1-0.4,0.1c-0.2,0-0.3,0-0.4-0.1c-0.1-0.1-0.2-0.1-0.3-0.2 c-0.1-0.1-0.2-0.2-0.2-0.4c-0.1-0.1-0.1-0.3-0.1-0.5c0-0.2,0-0.3,0.1-0.5c0.1-0.1,0.1-0.3,0.2-0.4c0.1-0.1,0.2-0.2,0.4-0.2 c0.1-0.1,0.3-0.1,0.5-0.1c0.2,0,0.3,0,0.5,0.1c0.1,0.1,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.2,0.2,0.4c0.1,0.1,0.1,0.3,0.1,0.5V8.5z M85.8,7.5c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.3-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.4,0.2c-0.1,0.1-0.2,0.3-0.2,0.5 c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,0.3,0.2,0.4,0.2c0.2,0,0.3-0.1,0.4-0.2C85.7,7.8,85.8,7.7,85.8,7.5z"/>
+                        <path class="st14" d="M86.6,6.4h0.5l0.5,1.5l0.5-1.5h0.5l-0.8,2.2c0,0.1-0.1,0.3-0.1,0.4c0,0.1-0.1,0.2-0.2,0.3 c-0.1,0.1-0.2,0.2-0.3,0.2c-0.1,0.1-0.3,0.1-0.4,0.1V9.1c0.1,0,0.1,0,0.2-0.1c0.1,0,0.1-0.1,0.2-0.2c0-0.1,0.1-0.1,0.1-0.2 c0-0.1,0-0.2,0-0.2L86.6,6.4z"/>
+                    </g>
+                    <g>
+                        <g><path class="st4" d="M11.9,0.8c0.8-0.1,1.3,0.3,1.6,1.1c0.1,0.7-0.1,1.2-0.7,1.5c-0.3,0.1-0.5,0.2-0.7,0.3 c-0.2,0.3-0.2,0.6-0.1,0.9c0.6,1.6,1.3,3.2,1.9,4.9c-0.1,0-0.2,0-0.3,0c-0.2-0.4-0.3-0.9-0.5-1.3c-0.1-0.3-0.3-0.5-0.5-0.7 c-0.5-0.2-0.9,0-1,0.5c0,0.2,0,0.4,0,0.6c0.1,0.3,0.2,0.7,0.4,1c-0.1,0.1-0.1,0.1-0.2,0.1C11.2,8.1,10.6,6.6,9.9,5 C9.8,4.8,9.6,4.7,9.4,4.7c-0.3,0-0.5,0.1-0.8,0.2C7.8,5,7.2,4.6,7,3.9c-0.1-1,0.3-1.5,1.3-1.6c0.5,0,0.8,0.2,1.1,0.6 C9.4,3,9.5,3.3,9.6,3.5C10,4.1,10.5,4.1,11,3.7c0.2-0.3,0.2-0.6,0.1-0.9C10.6,1.8,10.9,1.1,11.9,0.8z"/></g>
+                        <g><path class="st5" d="M15.9,10.2c0,0-0.1,0.1-0.1,0.1c0,0-0.1-0.1-0.1-0.1c0.2-0.7,0.4-1.3,0.5-2c0-0.4-0.1-0.7-0.5-0.8 c-0.3,0-0.5,0.1-0.7,0.3c-0.3,0.6-0.5,1.2-0.7,1.9c-0.1,0-0.1,0-0.2,0c0.5-1.7,1-3.5,1.5-5.2c0-0.3-0.2-0.5-0.4-0.6 c-1.1-0.2-1.5-0.9-1.1-1.9c0.5-0.7,1.1-0.9,1.9-0.4c0.4,0.3,0.5,0.6,0.5,1.1c-0.1,0.2-0.1,0.4-0.2,0.6c0,0.6,0.3,0.9,0.9,0.9 c0.3-0.1,0.5-0.3,0.6-0.6c0.2-1,0.8-1.3,1.7-1.1c0.5,0.2,0.7,0.6,0.7,1.1c-0.1,0.8-0.5,1.2-1.3,1.3c-0.2,0-0.4,0-0.6-0.1 c-0.3-0.1-0.6,0-0.8,0.3C17,6.5,16.4,8.4,15.9,10.2z"/></g>
+                        <g><path class="st6" d="M5.3,3.8c0.7,0,1.2,0.2,1.5,0.8c0.2,0.5,0.1,0.9-0.2,1.3C6.2,6.3,6.3,6.7,6.7,7c1.6,1,3.1,2,4.7,3 c0,0-0.1,0.1-0.1,0.1c-0.5-0.3-1-0.6-1.5-0.9C9.4,9,9.1,8.9,8.7,8.9c-0.5,0.2-0.6,0.5-0.4,1c0.5,0.5,1,0.9,1.6,1.3 c0.1,0.1,0.1,0.1,0,0.2c-1.2-0.7-2.3-1.5-3.4-2.3C6.2,8.9,5.8,8.7,5.4,8.4c-0.3-0.1-0.6,0-0.8,0.2c-0.4,0.7-1.1,1-1.9,0.7 C2.2,9,1.9,8.5,2.1,7.8c0.5-0.8,1.1-1,2-0.6c0.3,0.3,0.7,0.4,1.2,0.2c0.4-0.4,0.4-0.8,0-1.2C5,6,4.7,5.9,4.5,5.7 C4.1,5,4.2,4.5,4.8,4C5,3.9,5.1,3.8,5.3,3.8z"/></g>
+                        <g><path class="st7" d="M15.8,10.2c0,0,0.1,0,0.1-0.1c1.4-1,2.9-2,4.4-3c0.3-0.4,0.3-0.8,0-1.2c-0.3-0.3-0.4-0.6-0.3-1 c0.2-0.5,0.5-0.8,1-0.9c0.7-0.1,1.2,0.2,1.5,0.8c0.1,0.4,0,0.8-0.4,1.1c-0.3,0.2-0.6,0.4-0.7,0.8c-0.1,0.6,0.1,0.9,0.7,1 c0.2,0,0.3,0,0.5-0.1c0.2-0.2,0.5-0.3,0.7-0.4c0.6-0.1,1,0.1,1.4,0.6c0.3,0.9-0.1,1.5-0.9,1.7c-0.4,0-0.7,0-1.1-0.3 c-0.2-0.2-0.4-0.4-0.6-0.6c-0.2-0.1-0.4-0.1-0.5-0.1c-1.6,1.1-3.1,2.1-4.7,3.2c-0.1-0.1-0.1-0.1,0-0.2c0.6-0.4,1.2-0.8,1.7-1.3 c0.3-0.5,0.2-0.8-0.3-1c-0.4-0.1-0.7,0-1,0.2c-0.4,0.3-0.9,0.6-1.3,0.9C15.9,10.4,15.9,10.3,15.8,10.2z"/></g>
+                        <g><path class="st8" d="M2,9.8c1-0.1,1.6,0.3,1.6,1.4c0.1,0.3,0.3,0.5,0.6,0.6c1.8-0.1,3.6-0.2,5.4-0.2c0.1,0,0.2,0,0.4,0 c0,0,0,0.1,0,0.1c-0.8,0-1.6,0-2.3,0.2c-0.6,0.1-0.7,0.5-0.5,1c0.1,0.1,0.2,0.2,0.4,0.3c0.3,0,0.6,0.1,0.9,0.1c0.4,0,0.9,0,1.3,0 c0,0,0,0.1,0,0.1c-1.8,0.1-3.6,0.1-5.5,0.2C4,13.6,3.9,13.8,3.8,14c0,0.3-0.1,0.7-0.2,1c-0.2,0.4-0.5,0.6-1,0.7 c-0.6,0.1-1-0.2-1.3-0.6c-0.2-0.7,0-1.1,0.6-1.4c0.4,0,0.9-0.1,1.3-0.3c0.3-0.3,0.3-0.6,0.2-0.9C3.3,12.2,3.1,12,2.8,12 c-0.3,0-0.6,0-0.9,0c-0.6-0.2-0.9-0.7-0.8-1.4C1.3,10.2,1.6,9.9,2,9.8z"/></g>
+                        <g><path class="st9" d="M17.1,12.5c0,0,0-0.1,0-0.1c0.2,0,0.4,0,0.6,0c1.4,0,2.9,0,4.3-0.1c0.4,0,0.6-0.2,0.8-0.5 c0.1-0.4,0.1-0.7,0.2-1.1c0.2-0.5,0.6-0.8,1.2-0.8c0.7,0,1.2,0.3,1.4,1c0.1,0.8-0.3,1.3-1.1,1.5c-0.2,0-0.4,0-0.6,0 c-0.7,0.2-0.9,0.6-0.6,1.2c0.1,0.2,0.2,0.3,0.4,0.3c0.3,0,0.6,0,1,0c0.8,0.2,1.1,0.7,1,1.5c-0.2,0.5-0.5,0.8-1,0.9 c-0.6,0.1-1.1,0-1.4-0.5c-0.1-0.1-0.1-0.2-0.1-0.3c0-0.3-0.1-0.7-0.2-1c-0.1-0.2-0.2-0.3-0.4-0.3c-0.7-0.1-1.5-0.1-2.2-0.1 c-1,0-2,0-3,0.1c-0.1,0-0.2,0-0.3,0c0,0,0,0,0-0.1c0.5,0,1,0,1.5-0.1c0.3,0,0.6-0.2,0.8-0.4c0.2-0.5,0.1-0.9-0.5-1.1 C18.2,12.5,17.6,12.4,17.1,12.5z"/></g>
+                        <g><path class="st10" d="M17.7,12.3c-0.2,0-0.4,0-0.6,0c0,0,0,0.1,0,0.1c0,0,0-0.1,0-0.1C17.3,12.3,17.5,12.3,17.7,12.3z"/></g>
+                        <g><path class="st7" d="M9.8,14.1c0.1,0.1,0.1,0.2,0,0.3c-0.5,0.3-1,0.6-1.4,1c-0.3,0.3-0.2,0.7,0,1c0.2,0.1,0.4,0.2,0.6,0.1 c0.6-0.3,1.2-0.6,1.7-1c0.1,0,0.1,0,0.2,0.1c-1.4,1-2.8,1.9-4.2,2.9c-0.3,0.2-0.4,0.5-0.4,0.8c0.1,0.3,0.3,0.5,0.4,0.8 c0.1,1-0.3,1.5-1.3,1.7c-0.9-0.1-1.3-0.6-1.2-1.4c0-0.2,0.1-0.3,0.2-0.4c0.3-0.2,0.6-0.5,0.8-0.7c0.3-0.5,0.2-0.9-0.3-1.2 C4.7,18,4.5,18,4.3,18c-0.3,0.2-0.7,0.4-1.1,0.5c-0.7,0.1-1.1-0.2-1.3-0.9c-0.1-0.7,0.2-1.2,0.9-1.5c0.7-0.2,1.2,0,1.6,0.7 c0.3,0.3,0.6,0.4,1,0.2C6.8,16.1,8.3,15.1,9.8,14.1z"/></g>
+                        <g><path class="st6" d="M15.8,15.9C15.8,15.9,15.8,15.8,15.8,15.9c0-0.2,0-0.2,0.1-0.2c0.4,0.3,0.8,0.6,1.2,0.9 c0.3,0.2,0.7,0.3,1.1,0.2c0.2,0,0.3-0.2,0.4-0.4c0-0.1,0-0.2,0-0.4c-0.2-0.4-0.4-0.7-0.7-0.9c-0.3-0.2-0.7-0.5-1-0.7 c-0.1-0.1-0.1-0.2,0-0.3c1.6,1.1,3.1,2.3,4.7,3.4c0.2,0,0.4,0,0.5-0.1c0.2-0.2,0.4-0.4,0.6-0.6c0.3-0.2,0.6-0.3,1-0.2 c0.5,0.1,0.9,0.4,1.1,0.9c0.1,0.7-0.2,1.2-0.9,1.4c-0.3,0.1-0.7,0-1-0.2c-0.2-0.1-0.4-0.2-0.5-0.3c-0.5-0.2-0.9-0.1-1.1,0.5 c-0.1,0.4,0.1,0.7,0.4,0.9c0.8,0.4,1,1,0.6,1.8c-0.5,0.5-1,0.6-1.7,0.3c-0.6-0.4-0.8-0.9-0.6-1.5c0.2-0.3,0.3-0.5,0.5-0.8 c0-0.4-0.1-0.7-0.5-0.9C18.5,17.9,17.2,16.9,15.8,15.9z"/></g>
+                        <g><path class="st4" d="M15.7,15.8C15.8,15.8,15.8,15.9,15.7,15.8c0,0.1,0,0.1,0,0.1c0.3,1.1,0.6,2.3,0.9,3.4 c0.1,0.4,0.2,0.8,0.3,1.2c0.1,0.3,0.2,0.6,0.5,0.9c0.2,0.2,0.5,0.2,0.7,0.2c0.9-0.3,1.5,0,1.9,0.9c0.1,0.8-0.2,1.3-0.9,1.6 c-0.4,0.1-0.8,0.1-1.2-0.2c-0.2-0.2-0.3-0.3-0.5-0.5c-0.1-0.3-0.3-0.6-0.4-0.9c-0.3-0.4-0.7-0.4-1.1-0.1c-0.3,0.3-0.4,0.7-0.2,1.1 c0.1,0.7-0.1,1.2-0.7,1.6c-0.7,0.3-1.3,0.2-1.7-0.4c-0.3-0.5-0.3-1-0.1-1.5c0.1-0.1,0.2-0.3,0.4-0.4c0.3-0.1,0.5-0.2,0.8-0.3 c0.5-0.3,0.6-0.7,0.5-1.2c-0.4-1.6-0.9-3.1-1.3-4.7c0.1,0,0.2,0,0.3,0c0.1,0.6,0.3,1.1,0.5,1.6c0.3,0.5,0.7,0.6,1.2,0.2 c0.2-0.3,0.2-0.5,0.2-0.8c-0.1-0.5-0.2-1-0.4-1.5C15.6,15.9,15.7,15.9,15.7,15.8z"/></g>
+                        <g><path class="st11" d="M11.6,16.2c0.1,0,0.2,0,0.2,0.1c-0.1,0.3-0.3,0.6-0.5,0.9c-0.2,0.4-0.2,0.8,0,1.2c0.2,0.3,0.5,0.4,0.9,0.3 c0.2-0.1,0.3-0.2,0.4-0.3c0.3-0.6,0.6-1.1,0.8-1.7c0.1,0,0.2-0.1,0.3,0c-0.6,1.2-1.1,2.5-1.6,3.8c-0.2,0.4-0.4,0.8-0.6,1.3 c-0.1,0.4,0,0.6,0.3,0.9c0.3,0.1,0.5,0.3,0.7,0.4c0.3,0.3,0.5,0.7,0.4,1.1c-0.2,0.9-0.8,1.2-1.7,1.1c-0.6-0.3-0.9-0.8-0.9-1.4 c0-0.2,0.1-0.4,0.2-0.5c0.2-0.6,0-1-0.7-1.2c-0.2,0-0.5,0.1-0.6,0.3c-0.2,0.3-0.3,0.6-0.4,0.8c-0.4,0.4-0.8,0.5-1.4,0.4 c-0.7-0.3-1-0.8-0.8-1.6c0.3-0.7,0.8-0.9,1.5-0.8c0.2,0.1,0.5,0.2,0.8,0.2c0.2,0,0.4-0.1,0.6-0.3C10.2,19.4,10.9,17.8,11.6,16.2z"/></g>
+                        <circle class="st12" cx="13.2" cy="12.9" r="4.6"/>
+                        <g>
+                            <g><path class="st9" d="M16,13.6C16,13.6,16,13.6,16,13.6C16,13.6,16,13.6,16,13.6c0-0.1,0.1-0.2,0.1-0.2c0.1-0.1,0.2-0.2,0.2-0.3 c0.1-0.2,0.1-0.3,0-0.5c-0.1-0.3-0.4-0.5-0.6-0.5c0,0,0-0.3,0-0.4c0-0.1-0.1-0.2-0.2-0.3c-0.2-0.1-0.4-0.2-0.6-0.1 c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.3,0.2-0.4,0.1c-0.1,0-0.1-0.1-0.1-0.1c0,0,0,0,0.1,0c0.1,0,0.3,0,0.4-0.1 c0,0,0.1-0.1,0.1-0.1c0.2-0.2,0.5-0.3,0.8-0.2c0.3,0.1,0.5,0.5,0.5,0.8c0.2-0.4,0.1-1-0.3-1.3c-0.2-0.1-0.3-0.2-0.5-0.2 c0,0,0,0-0.1,0c0,0,0-0.1-0.1-0.2c0-0.1-0.1-0.1-0.1-0.2c-0.1-0.1-0.2-0.2-0.4-0.2c-0.3-0.1-0.6-0.1-0.8,0.2 c-0.1,0.2-0.1,0.5-0.1,0.7c0,0.8,0,1.7,0,2.5c0,0.4,0,0.9,0,1.3c0,0.2,0,0.4,0,0.6c0,0.2,0,0.4,0,0.5c0,0,0,0,0,0.1 c0.1,0.2,0.4,0.2,0.6,0.2c0.2,0,0.4-0.2,0.6-0.3c0,0-0.2-0.1-0.2-0.1c-0.2-0.1-0.4-0.3-0.5-0.6c0-0.1-0.1-0.3,0-0.3 c0.1,0.1,0.1,0.2,0.2,0.4c0.1,0.1,0.2,0.2,0.3,0.3c0.2,0.1,0.6,0.2,0.8,0c0.3-0.2,0.4-0.5,0.4-0.9c0-0.2-0.1-0.4-0.1-0.6 c0,0-0.3-0.5-0.3-0.5c0.1,0,0.1,0.1,0.2,0.1c0.2,0.2,0.3,0.5,0.4,0.7c0.1-0.1,0.2-0.3,0.3-0.4c0-0.2,0-0.4,0-0.5 C16.3,13.5,16.1,13.7,16,13.6z M14.2,10.2C14.2,10.2,14.2,10.2,14.2,10.2c0.1,0,0.1,0.1,0.1,0.2c0,0.1,0.1,0.2,0.1,0.3 c0,0.1,0.2,0.1,0.2,0.1c0.1,0,0.2,0,0.2,0.1c0,0,0,0.1,0,0.1c0,0-0.1,0-0.1,0c-0.2,0-0.4,0-0.5-0.2c-0.1-0.1-0.2-0.2-0.2-0.3 C14.1,10.5,14.1,10.2,14.2,10.2z M15.3,12.1C15.3,12.1,15.2,12.1,15.3,12.1c-0.2,0.2-0.3,0.4-0.4,0.7c0,0.2,0,0.4,0.1,0.6 c0.1,0.3,0.1,0.5,0.1,0.8c0,0.1,0,0.1-0.1,0.2c0,0,0,0,0,0c0,0,0,0,0,0c0-0.1,0-0.1,0-0.2c0-0.2,0-0.3-0.1-0.5 c0,0-0.1,0.2-0.2,0.2c-0.1,0.1-0.1,0.1-0.2,0.2c-0.1,0.1-0.3,0.2-0.5,0.2c0,0-0.1,0-0.1,0c0,0,0-0.1,0-0.1c0,0,0.1-0.1,0.1-0.1 c0.1,0,0.3-0.1,0.4-0.2c0.1-0.1,0.2-0.1,0.2-0.2c0.1-0.1,0-0.2,0-0.4c0-0.3,0-0.7,0.1-0.9c0-0.1,0.3-0.4,0.4-0.3 C15.3,12,15.3,12,15.3,12.1z"/></g>
+                            <g><path class="st13" d="M13.1,10.9h-1.5c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h1.5V10.9z M11.3,11.1c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1s0.1,0.1,0.1,0.1 C11.4,11.1,11.4,11.1,11.3,11.1z"/><path class="st13" d="M13.1,11.6h-0.9c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h0.9V11.6z M12,11.8c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1c0.1,0,0.1,0.1,0.1,0.1 C12.1,11.8,12,11.8,12,11.8z"/><path class="st13" d="M13.1,10.2h-0.4c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h0.4V10.2z M12.4,10.5c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1s0.1,0.1,0.1,0.1 C12.5,10.4,12.4,10.5,12.4,10.5z"/><path class="st13" d="M13.1,12.2h-2.1c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h2.1V12.2z M10.7,12.5c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1c0.1,0,0.1,0.1,0.1,0.1 C10.9,12.4,10.8,12.5,10.7,12.5z"/><path class="st13" d="M13.2,12.9h-1.4c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h1.4V12.9z M11.5,13.2c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1c0.1,0,0.1,0.1,0.1,0.1 C11.6,13.1,11.5,13.2,11.5,13.2z"/><path class="st13" d="M13.2,13.6h-2.1c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4s0.2,0.4,0.4,0.4c0.2,0,0.3-0.1,0.3-0.3h2.1 V13.6z M10.7,13.9c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1s0.1,0.1,0.1,0.1C10.9,13.8,10.8,13.9,10.7,13.9z"/><path class="st13" d="M13.2,14.3h-0.9c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h0.9V14.3z M12,14.5c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1s0.1,0.1,0.1,0.1 C12.1,14.5,12,14.5,12,14.5z"/><path class="st13" d="M13.2,15h-1.6c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4c0.2,0,0.3-0.1,0.3-0.3 h1.6V15z M11.2,15.2c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1c0.1,0,0.1,0.1,0.1,0.1C11.4,15.2,11.3,15.2,11.2,15.2z"/><path class="st13" d="M13.2,15.6h-0.5c0-0.1-0.2-0.3-0.3-0.3c-0.2,0-0.4,0.2-0.4,0.4c0,0.2,0.2,0.4,0.4,0.4 c0.2,0,0.3-0.1,0.3-0.3h0.5V15.6z M12.3,15.9c-0.1,0-0.1-0.1-0.1-0.1c0-0.1,0.1-0.1,0.1-0.1s0.1,0.1,0.1,0.1 C12.5,15.8,12.4,15.9,12.3,15.9z"/></g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="px-6 py-4 text-xs font-bold text-white/50 uppercase tracking-widest mt-2 mb-1">Workspace</div>
+        <nav class="flex-1 flex flex-col gap-2 px-4">
+            <button onclick="switchTab('register')" id="tab-register" class="flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-active text-white shadow-sm">
+                <i class="fas fa-robot w-6 text-center mr-2 text-lg"></i> Create AI Agent
+            </button>
+            <button onclick="switchTab('manage')" id="tab-manage" class="flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-btn">
+                <i class="fas fa-sliders-h w-6 text-center mr-2 text-lg"></i> Manage Agents
+            </button>
+        </nav>
+        
+        <div class="p-6 border-t border-white/20 bg-black/10 backdrop-blur-sm">
+            <div class="flex flex-col items-center justify-center">
+                <p class="text-[10px] text-white/60 mb-2 uppercase tracking-widest font-semibold">Powered by Core Engine</p>
+                <p class="text-xl text-white laisa-text">Ｌ Ａ Ｉ Ｓ Ａ</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto relative bg-slate-50">
+        <div class="max-w-5xl mx-auto px-8 py-10">
+            
+            <div id="view-register" class="fade-in block">
+                <div class="mb-8 border-b border-gray-200 pb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Deploy New Client Agent</h2>
+                    <p class="text-gray-500 mt-1">Configure an isolated AI brain and generate integration scripts instantly.</p>
+                </div>
+
+                <div class="glass-panel rounded-3xl p-8">
+                    <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Company / Client Name</label>
+                                <input type="text" id="reg-name" required class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 transition outline-none shadow-sm" placeholder="e.g. ICT Bangladesh">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Admin Email</label>
+                                <input type="email" required class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 transition outline-none shadow-sm" placeholder="admin@company.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Welcome Message</label>
+                            <input type="text" id="reg-welcome" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 transition outline-none shadow-sm" value="Hello! I am your AI Assistant. How can I help?">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Select Core AI Engine (from Cloud)</label>
+                            <select id="reg-provider" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 transition outline-none cursor-pointer shadow-sm">
+                                <optgroup label="Vision-Language Models">
+                                    <option value="qwen3-vl:latest">Qwen3-VL (Vision + Logic) - Latest</option>
+                                    <option value="llava:latest">LLaVA (Large Language-and-Vision)</option>
+                                    <option value="bakllava:latest">BakLLaVA</option>
+                                </optgroup>
+                                <optgroup label="Advanced Reasoning & Text">
+                                    <option value="deepseek-r1:latest">DeepSeek-R1 (High Reasoning)</option>
+                                    <option value="mistral:latest">Mistral (Fast & Efficient)</option>
+                                    <option value="qwen3:latest">Qwen 3 (Standard)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition duration-300 shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 text-lg">
+                                <i class="fas fa-magic"></i> Generate Bot & API Key
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="success-section" class="mt-8 hidden fade-in">
+                    <div class="glass-panel border-l-4 border-l-green-500 rounded-2xl p-6 flex flex-col gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-green-100 text-green-600 p-3 rounded-full"><i class="fas fa-check-circle text-2xl"></i></div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Deployment Successful!</h3>
+                                <p class="text-gray-500 text-sm">The isolated environment is ready. Hand over the script below to the client.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Secure X-API-KEY</label>
+                            <div class="flex items-center shadow-sm rounded-lg">
+                                <input type="text" id="generated-key" readonly class="w-full bg-gray-100 text-gray-700 px-4 py-3.5 border border-gray-300 rounded-l-lg font-mono outline-none">
+                                <button onclick="copyToClipboard('generated-key')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 rounded-r-lg transition">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Integration Embed Script</label>
+                            <div class="relative group shadow-sm rounded-xl">
+                                <pre id="embed-code" class="code-block p-5 rounded-xl text-sm overflow-x-auto border border-slate-700 leading-relaxed"></pre>
+                                <button onclick="copyToClipboard('embed-code', true)" class="absolute top-3 right-3 bg-slate-700 hover:bg-slate-600 text-white w-8 h-8 rounded flex items-center justify-center transition opacity-0 group-hover:opacity-100"><i class="fas fa-copy"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-manage" class="hidden fade-in">
+                <div class="mb-8 border-b border-gray-200 pb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Agent Control Center</h2>
+                    <p class="text-gray-500 mt-1">Authenticate to manage models, historical syncs, and alert configurations.</p>
+                </div>
+
+                <div class="glass-panel rounded-3xl p-8">
+                    <div id="login-section" class="flex flex-col gap-4">
+                        <label class="text-sm font-semibold text-gray-700">Client X-API-KEY Authentication</label>
+                        <div class="flex gap-4">
+                            <input type="text" id="login-api-key" placeholder="Enter API Key..." class="flex-1 px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none font-mono shadow-sm">
+                            <button onclick="loginClient()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg">
+                                Authenticate <i class="fas fa-lock-open ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="dashboard-settings" class="hidden border-t border-gray-200 pt-8 mt-8 fade-in">
+                        <div class="flex justify-between items-center mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800 flex items-center gap-3">
+                                    <span id="dash-client-name">Company Name</span>
+                                    <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider border border-green-200">Online</span>
+                                </h3>
+                            </div>
+                            <button onclick="triggerHistoricalSync()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-5 rounded-lg transition shadow-md flex items-center gap-2 text-sm">
+                                <i class="fas fa-database"></i> Sync  Historical  Data
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-6">
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                                    <h4 class="font-bold text-gray-800 mb-4 border-b pb-2"><i class="fas fa-robot text-blue-500 mr-2"></i>Bot Identity</h4>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Display Name</label>
+                                            <input type="text" id="edit-name" readonly class="w-full px-4 py-2.5 bg-gray-100 text-gray-500 border border-gray-200 rounded-lg outline-none cursor-not-allowed">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Welcome Message</label>
+                                            <input type="text" id="edit-welcome" readonly class="w-full px-4 py-2.5 bg-gray-100 text-gray-500 border border-gray-200 rounded-lg outline-none cursor-not-allowed">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                                    <h4 class="font-bold text-gray-800 mb-4 border-b pb-2"><i class="fas fa-envelope text-orange-500 mr-2"></i>Email Alert Setup</h4>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Fallback Receiver (Admin Email)</label>
+                                            <input type="email" id="edit-receive-email" placeholder="admin@ictbd.com" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                        </div>
+                                        <div class="pt-2 border-t border-gray-100">
+                                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">SMTP Sender Email</label>
+                                            <input type="email" id="edit-sender-email" placeholder="bot@fellowly.com" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">SMTP App Password</label>
+                                            <input type="password" id="edit-app-password" placeholder="••••••••••••••••" class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition font-mono">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                                    <h4 class="font-bold text-gray-800 mb-4 border-b pb-2"><i class="fas fa-microchip text-purple-500 mr-2"></i>AI Engine Configuration</h4>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Active Model</label>
+                                        <select id="edit-provider" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition outline-none cursor-pointer">
+                                            <optgroup label="Vision-Language Models">
+                                                <option value="qwen3-vl:latest">Qwen3-VL (Vision + Logic) - Latest</option>
+                                                <option value="llava:latest">LLaVA (Large Language-and-Vision)</option>
+                                                <option value="bakllava:latest">BakLLaVA</option>
+                                            </optgroup>
+                                            <optgroup label="Advanced Reasoning & Text">
+                                                <option value="deepseek-r1:latest">DeepSeek-R1 (High Reasoning)</option>
+                                                <option value="mistral:latest">Mistral (Fast & Efficient)</option>
+                                                <option value="qwen3:latest">Qwen 3 (Standard)</option>
+                                            </optgroup>
+                                        </select>
+                                        <p class="text-[10px] text-gray-400 mt-1">Updating the model will instantly shift the bot's processing core.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm h-full">
+                                    <h4 class="font-bold text-gray-800 mb-4 border-b pb-2"><i class="fas fa-terminal text-green-500 mr-2"></i>System Prompt</h4>
+                                    <textarea id="edit-behavior" class="w-full h-[150px] px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm" placeholder="e.g. You are a helpful assistant..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end pt-8 mt-6 border-t border-gray-200">
+                            <button onclick="updateClientDetails(this)" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 px-10 rounded-xl transition shadow-lg flex items-center gap-2 text-lg">
+                                <i class="fas fa-save"></i> Save Configuration
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        //const API_BASE_URL = "http://127.0.0.1:8002/api/v1"; 
+		// 🚀 PRO-LEVEL FIX: Dynamically construct API URL based on current host
+        const API_BASE_URL = window.location.origin + "/api/v1";
+        
+        // 🚀 PRO-LEVEL: Global State Management for Authentication
+        let currentApiKey = "";
+
+        function switchTab(tab) {
+            document.getElementById('view-register').classList.toggle('hidden', tab !== 'register');
+            document.getElementById('view-manage').classList.toggle('hidden', tab !== 'manage');
+            
+            const btnReg = document.getElementById('tab-register');
+            const btnManage = document.getElementById('tab-manage');
+
+            if(tab === 'register') {
+                btnReg.className = "flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-active text-white transition-all shadow-sm";
+                btnManage.className = "flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-btn transition-all";
+            } else {
+                btnManage.className = "flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-active text-white transition-all shadow-sm";
+                btnReg.className = "flex items-center w-full px-4 py-3.5 text-left rounded-xl sidebar-btn transition-all";
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const welcome = document.getElementById('reg-welcome').value;
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/clients/register`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ name: name, welcome_message: welcome }) 
+                });
+                
+                if(!res.ok) throw new Error("Failed to register client securely.");
+                const data = await res.json();
+
+                document.getElementById('success-section').classList.remove('hidden');
+                document.getElementById('generated-key').value = data.api_key;
+                
+                const codeBlock = document.getElementById('embed-code');
+                codeBlock.innerText = `<script src="https://your-server.com/chatbot-widget.js"><\/script>
+<script>
+    initFellowlyAIBot({
+        apiKey: "${data.api_key}",
+        theme: "corporate-light",
+        position: "bottom-right",
+        companyName: "${name}"
+    });
+<\/script>`;
+                
+            } catch (err) {
+                alert("Server Error: " + err.message);
+            }
+        }
+
+        // 🚀 PRO-LEVEL: Fetch and Populate Existing Configuration
+        async function loginClient() {
+            const apiKey = document.getElementById('login-api-key').value.trim();
+            if(!apiKey) return alert("Security Error: X-API-KEY is required.");
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/clients/me`, {
+                    headers: {'x-api-key': apiKey}
+                });
+                if(!res.ok) throw new Error("Authentication Failed. Invalid API Key.");
+                
+                const client = await res.json();
+                
+                // Store global auth state
+                currentApiKey = apiKey;
+                
+                // Populate Identity (Read-only for now)
+                document.getElementById('dash-client-name').innerText = client.name;
+                document.getElementById('edit-name').value = client.name;
+                document.getElementById('edit-welcome').value = client.welcome_message || "";
+                
+                // Populate Config if it exists
+                if (client.config) {
+                    if (client.config.fallback_email) document.getElementById('edit-receive-email').value = client.config.fallback_email;
+                    if (client.config.smtp_sender) document.getElementById('edit-sender-email').value = client.config.smtp_sender;
+                    if (client.config.smtp_password) document.getElementById('edit-app-password').value = client.config.smtp_password;
+                    if (client.config.active_model) document.getElementById('edit-provider').value = client.config.active_model;
+                    if (client.config.system_prompt) document.getElementById('edit-behavior').value = client.config.system_prompt;
+                }
+                
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-settings').classList.remove('hidden');
+
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // 🚀 PRO-LEVEL: Live Backend Patch Request
+        async function updateClientDetails(btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            btn.disabled = true;
+
+            // Gather all config data
+            const configUpdate = {
+                fallback_email: document.getElementById('edit-receive-email').value,
+                smtp_sender: document.getElementById('edit-sender-email').value,
+                smtp_password: document.getElementById('edit-app-password').value,
+                active_model: document.getElementById('edit-provider').value,
+                system_prompt: document.getElementById('edit-behavior').value
+            };
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/chat/config`, {
+                    method: 'PATCH',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-api-key': currentApiKey 
+                    },
+                    body: JSON.stringify(configUpdate)
+                });
+
+                if(!res.ok) {
+                    const errData = await res.json();
+                    throw new Error(errData.detail || "Failed to update configuration.");
+                }
+                
+                alert("✅ Configuration securely saved to Cloud Database!");
+            } catch (error) {
+                console.error("Failed to save config:", error);
+                alert("❌ Error: " + error.message);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+      // 🚀 PRO-LEVEL: Dynamic External API Fetcher
+        async function triggerHistoricalSync() {
+            const btn = document.querySelector('button[onclick="triggerHistoricalSync()"]');
+            const originalHTML = btn.innerHTML;
+            
+            // 🎯 আপনার আইডিয়া অনুযায়ী পপ-আপ ইনপুট!
+            const externalUrl = prompt(
+                "System Integration: \nPlease enter your system's public API URL to sync historical data.\n(e.g., https://your-site.com/api/courses)", 
+                "https://jsonplaceholder.typicode.com/posts" // A sample dummy URL for testing
+            );
+            
+            if(!externalUrl) return; // User cancelled
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching Data...';
+            btn.disabled = true;
+
+            try {
+                if(!currentApiKey) throw new Error("Please authenticate first.");
+
+                const res = await fetch(`${API_BASE_URL}/entities/sync/external-url`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-api-key': currentApiKey 
+                    },
+                    body: JSON.stringify({ 
+                        api_url: externalUrl,
+                        entity_type: "general_data" 
+                    })
+                });
+
+                if(!res.ok) {
+                    const errData = await res.json();
+                    throw new Error(errData.detail || "Failed to fetch data from URL.");
+                }
+                
+                const data = await res.json();
+                alert(`✅ Migration Successful!\n\n${data.message}`);
+                
+            } catch (err) {
+                alert(`❌ Migration Failed:\n${err.message}`);
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        function copyToClipboard(id, isInnerText=false) {
+            const element = document.getElementById(id);
+            const text = isInnerText ? element.innerText : element.value;
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+</body>
+</html>
